@@ -2,9 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>demo</title>
 </head>
 <body>
-
+<p>
+    <a href="http://git.oschina.net/btpka3/btpka3/wikis/task">题目</a><br>
+* 0. 打印系统时间（开始时间）。<br>
+* 1. 针对参数（比如 `[1,2,3]` ）中的每一个数值 "并发" 执行进行以下操作（假设当前数值为n）：<br>
+*    1.1 先暂停n秒。<br>
+*    1.2 计算 n^2 + 1<br>
+*    1.3 控制台输出 当前系统时间，以及1.2步计算结果。<br>
+*
+* 2. 对上述计算结果进行求和（假设为S），并打印到控制台。<br>
+*    比如： (1^2+1) + (2^2+1) + (3^2+1) = 2 + 5 + 10 = 17。则控制台输出 17<br>。
+*<br>
+* 3. 打印系统时间（结束时间），并打印总耗时（结束时间-开始时间）<br>。
+*    总耗时（秒）应当在数组中最大值左右（3秒左右）。<br>
+*<br>
+* @param intArr 自然数数组。
+</p>
+<script>
+    var intArr = [ 1, 3, 4 , 7];
+    var index = 0;
+    var size = 0;
+    var result = 0;
+    var startTime ;
+    var endTime ;
+    window.onload = function() {
+        size = intArr.length;
+        myTask();
+    }
+    function func(){
+        var num = intArr[index++];
+        console.log(new Date());
+        result += num * num + 1;
+        if(index == size){
+            console.log('result:' + result);
+            endTime = new Date();
+            console.log('end:' + endTime);
+            console.log('time:' + (endTime - startTime) + 'ms');
+        }
+    }
+    function myTask() {
+        startTime = new Date();
+        console.log('start:' + startTime);
+        for ( var i = 0; i < intArr.length; i++) {
+            setTimeout('func()', intArr[i] * 1000);
+        }
+    }
+</script>
 </body>
 </html>
